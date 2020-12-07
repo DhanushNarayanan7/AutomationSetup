@@ -82,3 +82,60 @@ public class ChubbSmokeTest {
 	}
 }
 
+//import java.io.File;
+//import java.io.IOException;
+//import java.util.concurrent.TimeUnit;
+//
+//import org.openqa.selenium.By;
+//import org.openqa.selenium.OutputType;
+//import org.openqa.selenium.TakesScreenshot;
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.edge.EdgeDriver;
+//import org.openqa.selenium.ie.InternetExplorerDriver;
+//import org.openqa.selenium.io.FileHandler;
+//import org.openqa.selenium.support.ui.ExpectedCondition;
+//import org.openqa.selenium.support.ui.ExpectedConditions;
+//import org.openqa.selenium.support.ui.FluentWait;
+//import org.openqa.selenium.support.ui.Wait;
+//import org.openqa.selenium.support.ui.WebDriverWait;
+//import org.testng.Assert;
+//import org.testng.annotations.Test;
+//
+//
+//public class chrome {
+//
+//	@Test
+//	public void CaptureScreenShot() throws InterruptedException,IOException {
+//		System.setProperty("webdriver.edge.driver", "C:\\Users\\Dhanush Narayanan R\\Downloads\\edgedriver\\msedgedriver.exe");
+//		WebDriver driver= new EdgeDriver();
+//		driver.get("https://www.facebook.com/");
+//		driver.manage().window().maximize();
+//		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//		WebElement username=driver.findElement(By.xpath("//input[@id='email']"));
+//		WebElement password=driver.findElement(By.xpath("//input[@id='pass']"));
+//		WebElement login=driver.findElement(By.xpath("//button[@id='u_0_b']")); 
+//		//Thread.sleep(1000);
+//		username.sendKeys("narayanandhanushn2@gmail.com"); 
+//		//Thread.sleep(1000);
+//		//driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+//		password.sendKeys("DhanushDanDk07");
+//		WebDriverWait wait = new WebDriverWait(driver, 15);
+//		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='u_0_b']")));
+//		//Thread.sleep(1000);
+//		login.click();
+//		String actualUrl="https://www.facebook.com/"; 
+//		String expectedUrl= driver.getCurrentUrl(); 
+//		Assert.assertEquals(expectedUrl,actualUrl);
+//		//driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys("AutomateMaven");
+//		TakesScreenshot ts=(TakesScreenshot)driver;
+//		File source=ts.getScreenshotAs(OutputType.FILE);
+//		FileHandler.copy(source, new File ("./ScreenShots/facebook.png"));
+//		System.out.println("Screenshot taken");
+//		driver.quit();
+//	}
+//
+//}
+
+
