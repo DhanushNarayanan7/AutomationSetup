@@ -38,7 +38,7 @@ public class ChubbSmokeTest {
 	public void startBrowser() {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Dhanush Narayanan R\\Downloads\\chromedriver_win32\\chromedriver.exe");
 		try {
-			prop.load(new FileReader("C:\\Users\\Dhanush Narayanan R\\Downloads\\AutomationSetup\\AutomationSetup\\BCWS\\src\\main\\resources\\PROD.properties"));
+			prop.load(new FileReader("C:\\Users\\Dhanush Narayanan R\\git repository\\AutomationSetup\\AutomationSetup\\AutomationSetup\\BCWS\\src\\main\\resources\\PROD.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,8 +69,9 @@ public class ChubbSmokeTest {
 	@Test
 	public void BCWSPolicyDetailsOne() throws InterruptedException {
 		driver.get(prop.getProperty("Papa"));
+		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//a[.='Order Online']"));
-		//driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+		
 		//driver.findElement(By.xpath("(((//label[text()='Search for:'])[2]/following::input)[2])[1]")).sendKeys("Myname");
 		createFile("BCWS_UpdatedPolicyDetailsOne");
 	}
