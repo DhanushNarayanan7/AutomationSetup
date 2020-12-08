@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -53,7 +54,7 @@ public class ChubbSmokeTest {
 		ChromeOptions chromeOptions = new ChromeOptions();
 		chromeOptions.addArguments("--ignore-certificate-errors");
 		chromeOptions.addArguments("--start-maximized");
-		src = new File ("C:\\TestFile.xlsx");
+		src = new File ("C:\\DANDK\\TestFile.xlsx");
 		fin= new FileInputStream(src);
 		wb=new XSSFWorkbook(fin);
 		driver = new ChromeDriver(chromeOptions);
@@ -78,7 +79,7 @@ public class ChubbSmokeTest {
 		
 	
 	@Test
-	public void BCWSPolicyDetailsOne() throws InterruptedException {
+	public void BCWSPolicyDetailsOne() throws Exception {
 		driver.get(prop.getProperty("FaceBook"));
 		
 		//FOR FACEBOOK PROJECT
@@ -92,11 +93,15 @@ public class ChubbSmokeTest {
 		String name =driver.findElement(By.xpath("(//span[contains(@class,'a8c37x1j ni8dbmo4')])[1]")).getText();
 		System.out.println(name);
 		XSSFSheet sheet = wb.getSheetAt(0);
-		if(name == "Dhanush") {
-		sheet.getRow(0).createCell(0).setCellValue("Working Fine");
+		FileOutputStream fout = new FileOutputStream(src);
+		if(name.equalsIgnoreCase("Dhanush")) {
+		sheet.createRow(0).createCell(0).setCellValue("Working Fine");
+		wb.write(fout);
 		}else {
-		sheet.getRow(0).createCell(0).setCellValue("Some Error");	
+		sheet.createRow(0).createCell(0).setCellValue("Some Error");
+		wb.write(fout);
 		}
+		wb.close();
 		//  FOR PAPA'S PROJECT
 		//driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 		//driver.findElement(By.xpath("//a[.='Order Online']"));
