@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Enumeration;
 import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -40,6 +42,9 @@ public class ChubbSmokeTest {
     String linkText;
     XSSFWorkbook wb;
     FileInputStream fin;
+    FileOutputStream fout;
+    XSSFSheet sheet;
+    WebElement username,password,login;
     File src ;
     Properties prop = new Properties();
     
@@ -80,28 +85,55 @@ public class ChubbSmokeTest {
 	
 	@Test
 	public void BCWSPolicyDetailsOne() throws Exception {
-		driver.get(prop.getProperty("FaceBook"));
+		
+		
+		//driver.get(prop.getProperty("FaceBook"));
+		Set <String> keys = prop.stringPropertyNames();
+		for(String property : keys) {
+			if (property.equalsIgnoreCase("FaceBook")) {
+				driver.get(prop.getProperty(property));
+				username=driver.findElement(By.xpath("//input[@id='email']"));
+				password=driver.findElement(By.xpath("//input[@id='pass']"));
+				login=driver.findElement(By.xpath("//button[@id='u_0_b']")); 
+				username.sendKeys("narayanandhanushn2@gmail.com"); 
+				password.sendKeys("DhanushDanDk07");
+				login.click();
+				Thread.sleep(10000);
+				String name =driver.findElement(By.xpath("(//span[contains(@class,'a8c37x1j ni8dbmo4')])[1]")).getText();
+				System.out.println(name);
+				sheet = wb.getSheetAt(0);
+				fout = new FileOutputStream(src);
+				if(name.equalsIgnoreCase("Dhanush")) {
+				sheet.createRow(0).createCell(0).setCellValue("Working Fine");
+				wb.write(fout);
+				}else {
+				sheet.createRow(0).createCell(0).setCellValue("Some Error");
+				wb.write(fout);
+				}
+				wb.close();
+			}
+		}
 		
 		//FOR FACEBOOK PROJECT
-		WebElement username=driver.findElement(By.xpath("//input[@id='email']"));
-		WebElement password=driver.findElement(By.xpath("//input[@id='pass']"));
-		WebElement login=driver.findElement(By.xpath("//button[@id='u_0_b']")); 
-		username.sendKeys("narayanandhanushn2@gmail.com"); 
-		password.sendKeys("DhanushDanDk07");
-		login.click();
-		Thread.sleep(10000);
-		String name =driver.findElement(By.xpath("(//span[contains(@class,'a8c37x1j ni8dbmo4')])[1]")).getText();
-		System.out.println(name);
-		XSSFSheet sheet = wb.getSheetAt(0);
-		FileOutputStream fout = new FileOutputStream(src);
-		if(name.equalsIgnoreCase("Dhanush")) {
-		sheet.createRow(0).createCell(0).setCellValue("Working Fine");
-		wb.write(fout);
-		}else {
-		sheet.createRow(0).createCell(0).setCellValue("Some Error");
-		wb.write(fout);
-		}
-		wb.close();
+//		WebElement username=driver.findElement(By.xpath("//input[@id='email']"));
+//		WebElement password=driver.findElement(By.xpath("//input[@id='pass']"));
+//		WebElement login=driver.findElement(By.xpath("//button[@id='u_0_b']")); 
+//		username.sendKeys("narayanandhanushn2@gmail.com"); 
+//		password.sendKeys("DhanushDanDk07");
+//		login.click();
+//		Thread.sleep(10000);
+//		String name =driver.findElement(By.xpath("(//span[contains(@class,'a8c37x1j ni8dbmo4')])[1]")).getText();
+//		System.out.println(name);
+//		XSSFSheet sheet = wb.getSheetAt(0);
+//		FileOutputStream fout = new FileOutputStream(src);
+//		if(name.equalsIgnoreCase("Dhanush")) {
+//		sheet.createRow(0).createCell(0).setCellValue("Working Fine");
+//		wb.write(fout);
+//		}else {
+//		sheet.createRow(0).createCell(0).setCellValue("Some Error");
+//		wb.write(fout);
+//		}
+//		wb.close();
 		//  FOR PAPA'S PROJECT
 		//driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 		//driver.findElement(By.xpath("//a[.='Order Online']"));
